@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.btn-style {
+  @apply bg-red-400 active:scale-90 p-2 border-3 border-red-700 hover:bg-red-500 text-white font-bold rounded cursor-pointer;
+}
+
+.container-form {
+  @apply flex text-white h-dvh w-dvw justify-center font-extrabold;
+}
+
+.form{
+  @apply flex flex-col items-center justify-center gap-4 bg-[#121212] self-center p-10 rounded-lg shadow-lg;
+}
+
+body {
+  @apply bg-[#212121] text-white;
+}
