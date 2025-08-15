@@ -25,6 +25,11 @@ const restauranteSchema = new mongoose.Schema({
     required: true
   }
 ,
+  likes: {
+    type: Number, 
+    default: 0,
+    min: 0
+  },
   tipoComida: { type: String, required: true },
   calificacion: { type: Number, min: 0, max: 5, default: 0 },
   comentarios: [{
