@@ -21,7 +21,6 @@ export const MapaGoogle= ({location}:Props) => {
   return (
     <div className='w-[100%] h-[100%]'>
 
-    
       <GoogleMap
         mapContainerStyle={{ width: '100%', height: '100%' , borderRadius: '15px'}}
         center={center}
