@@ -5,14 +5,18 @@ type ImgContextType = {
   setImagenes: (url: string[]) => void;
 };
 
+
+
 interface AuthContextType {
-  user:{ email: string |null | undefined;}
+  user:{ email: string |null | undefined} | null;
   loginWithGoogle: () => Promise<void>;
 }
 
 type LocationContextType = {
   location: number[];
   setLocation: (location: number[]) => void;
+  actualizar: boolean ;
+  setActualizar: (actualizar: boolean) => void;
 };
 
 export const AuthContext = createContext<AuthContextType>({
@@ -23,8 +27,8 @@ export const AuthContext = createContext<AuthContextType>({
     throw new Error('loginWithGoogle function must be overridden');
   },
 });
+
 export const ImgContext = createContext< ImgContextType | null>(null);
 
 export const LocationContext = createContext<LocationContextType | undefined>(undefined);
-
 

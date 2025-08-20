@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { obtenerRestaurantes } from "../File TS/APIconect";
 import {  IconStar, IconPhone, IconBrandWhatsapp } from '@tabler/icons-react';
 import type { JSX } from "react/jsx-runtime";
 import { BtnLikes } from "./btnLike";
+import { LocationContext } from "../context/Contexts";
 
 
 type Comentario = {
@@ -12,7 +13,9 @@ type Comentario = {
   fecha: string;
 };
 
-interface Restaurantes {
+ interface Restaurantes {
+    likes: number;
+    _id: string;
     map(arg0: (dato: dato, index: number) => JSX.Element): import("react").ReactNode;
     dato: { 
     _id: string;
@@ -55,9 +58,14 @@ type dato = {
 }
 
 export const CardsRestaurant = ()=>{
+  const context = useContext(LocationContext)
+  if (!context) {
+    throw new Error('LocationContext must be used within a LocationProvider');
+  }
     const [datos , setDatos] = useState<Restaurantes | null>(null);
     const navegar = useNavigate();
-    
+    const {actualizar, setActualizar } = context
+    console.log(actualizar)
     
     useEffect(() => {
       const obtener = async () => {
@@ -65,13 +73,15 @@ export const CardsRestaurant = ()=>{
           const data = await obtenerRestaurantes();
           console.log("Restaurantes obtenidos:", data);
           setDatos(data); 
+          setActualizar(prev => !prev);
         } catch (error) {
           console.error("Error al obtener restaurantes:", error);
         }
       };
 
       obtener();
-    }, []);
+    }, [actualizar]);
+    
   const handleClick = (e: React.MouseEvent)=>{
     const nombreRestaurante: string | null = e.currentTarget.getAttribute('data-name')
     navegar(`restaurante/${nombreRestaurante}`)
@@ -101,8 +111,6 @@ export const CardsRestaurant = ()=>{
                   <span className='text-red-500 font-bold'>Horario: </span> {dato.horario.apertura} - {dato.horario.cierre}
                 </p>
 
-                {/* <p className="mb-2 xl:text-xl text-red-400">{dato.descripcion}</p> */}
-
                 <p className="text-[18px] xl:text-xl text-gray-400">
                   <span className='text-red-500 font-bold'>Ubicación: </span> {dato.ubicacion}</p>
                 <div className='flex gap-2 mt-3 text-gray-400 xl:text-xl'>
@@ -123,9 +131,12 @@ export const CardsRestaurant = ()=>{
                     cursor-pointer '>
                     <IconStar className=' text-red-500' stroke={3} size={25} />
                     <p className="text-[18px] xl:text-xl font-mono"> {dato.calificacion} </p>
+
                   </button>
 
-                  <BtnLikes/>
+
+                  <BtnLikes restaurateID={dato._id} like={dato.likes}/>
+
                   <button className="pl-4 pr-4 pt-2 pb-2 hover:bg-red-300 bg-red-400/30
                     border-2 border-red-600 rounded-[10px] hover:text-gray-800 "
                     onClick={handleClick} data-name={dato.nombre}>

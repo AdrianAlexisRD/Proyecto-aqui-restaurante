@@ -19,19 +19,23 @@ export const MapaGoogle= ({location}:Props) => {
   if (!isLoaded) return <p>Cargando mapa...</p>;
 
   return (
-    <GoogleMap
-      mapContainerStyle={{ width: '90%', height: '400px' , borderRadius: '15px'}}
-      center={center}
-      zoom={15}
-      mapId={mapID}
-    //   onLoad={(map) => {
-    //     new google.maps.marker.AdvancedMarkerElement({
-    //       map,
-    //       position: center,
-    //       title: 'Ubicación del restaurante',
-    //     });
-    //   }}
-    />
+    <div className='w-[100%] h-[100%]'>
+
+    
+      <GoogleMap
+        mapContainerStyle={{ width: '100%', height: '100%' , borderRadius: '15px'}}
+        center={center}
+        zoom={18}
+        mapId={mapID}
+      //   onLoad={(map) => {
+      //     new google.maps.marker.AdvancedMarkerElement({
+      //       map,
+      //       position: center,
+      //       title: 'Ubicación del restaurante',
+      //     });
+      //   }}
+      />
+    </div>
   );
 };
 

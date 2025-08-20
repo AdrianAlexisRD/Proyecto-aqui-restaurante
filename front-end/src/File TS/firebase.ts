@@ -2,9 +2,10 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
+const apiUrl = import.meta.env.FIREBASE_KEY;
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBnrj1lri99u1ACldnfofT5zcZOexMIFEA",
+  apiKey: apiUrl,
   authDomain: "data-6d9cf.firebaseapp.com",
   projectId: "data-6d9cf",
   storageBucket: "data-6d9cf.firebasestorage.app",

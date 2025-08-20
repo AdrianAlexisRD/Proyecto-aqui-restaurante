@@ -20,7 +20,6 @@ function App() {
               <Route  element={<DashboardLayout />}>
                   <Route path="/fotos" element={<GaleriaFirebase />} />
                   <Route path="" element={<UserInfo />} />
-              {/* <Route path="auth/register" element={<Register />} /> */}
               <Route path="auth/login&register" element={<LoginResgister />} />
               <Route path="/" element={<UserInfo />} />
               <Route path='/restaurante/:name' element={<Card/>}/>

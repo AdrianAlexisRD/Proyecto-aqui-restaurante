@@ -3,12 +3,12 @@ import Restaurante from '../Modelos/Restaurante.js';
 
 export const darLike = async (req, res) => {
     const { userEmail, restauranteId } = req.body;
+    console.log(userEmail , restauranteId)
   
   console.log('funciono')
   try {
   const restauranteValor = await Restaurante.findById(restauranteId)
     console.log(restauranteValor.likes)
-    console.log(userEmail , restauranteId)
     if (!userEmail) {
       return res.status(400).json({ message: "El correo es obligatorio" });
     }
