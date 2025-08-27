@@ -1,4 +1,5 @@
-import { createContext } from "react";
+import { createContext, type Dispatch, type SetStateAction } from "react";
+import type { User } from "firebase/auth";
 
 type ImgContextType = {
   imagenes: string [];
@@ -8,7 +9,7 @@ type ImgContextType = {
 
 
 interface AuthContextType {
-  user:{ email: string |null | undefined} | null;
+  user: User | null;
   loginWithGoogle: () => Promise<void>;
 }
 
@@ -16,13 +17,12 @@ type LocationContextType = {
   location: number[];
   setLocation: (location: number[]) => void;
   actualizar: boolean ;
-  setActualizar: (actualizar: boolean) => void;
+  setActualizar: Dispatch<SetStateAction<boolean>>;
+  toggleActualizar: ()=> void ;
 };
 
 export const AuthContext = createContext<AuthContextType>({
-  user: {
-    email: null
-  },
+  user:null ,
   loginWithGoogle: async () => {
     throw new Error('loginWithGoogle function must be overridden');
   },

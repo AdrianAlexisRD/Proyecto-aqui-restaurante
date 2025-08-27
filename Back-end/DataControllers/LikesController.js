@@ -9,6 +9,7 @@ export const darLike = async (req, res) => {
   try {
   const restauranteValor = await Restaurante.findById(restauranteId)
     console.log(restauranteValor.likes)
+    
     if (!userEmail) {
       return res.status(400).json({ message: "El correo es obligatorio" });
     }
@@ -16,7 +17,7 @@ export const darLike = async (req, res) => {
     const restaurante = await Restaurante.findByIdAndUpdate(
       restauranteId,
       { likes: restauranteValor.likes + 1 , status: 'activo' }
-      
+
     );
 
     if (!restaurante) {

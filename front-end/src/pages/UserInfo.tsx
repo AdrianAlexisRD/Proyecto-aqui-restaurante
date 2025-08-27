@@ -8,11 +8,11 @@ const UserInfo = () => {
   console.log(user);
   return (
     <div className="flex flex-col items-center ">
-      <div className="overflow-hidden flex justify-center xl:h-140 h-120 xl:w-[65%] relative group">
+      <div className="overflow-hidden flex justify-center xl:h-140 h-120  w-[90%] relative group">
         <img
           src={aquiRestauranImg}
           alt=""
-          className="  w-[95%] xl:h-150 mt-5 rounded opacity-75 group-hover:opacity-20 "
+          className="  w-[100%] 2xl:w-[70%] xl:h-150 mt-5 rounded opacity-75 group-hover:opacity-20 "
         />
         <div className="absolute flex-col justify-center
          h-full w-100 xl:w-200 text-md text-red-200 gap-4 group-hover:opacity-100 
@@ -38,13 +38,9 @@ const UserInfo = () => {
           
         </div>
       </div>
-      {user ? (
-        <p>Bienvenido, {user.email}</p>
-      ) : (
-        <p>No hay usuario autenticado</p>
-      )}
 
       <CardsRestaurant />
+
     </div>
   );
 };

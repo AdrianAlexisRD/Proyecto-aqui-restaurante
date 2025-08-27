@@ -1,6 +1,6 @@
 import { useJsApiLoader, GoogleMap } from '@react-google-maps/api';
-const mapaKey = import.meta.env.MAPA_KEY;
-const mapaId = import.meta.env.MAPA_ID;
+const mapaKey = import.meta.env.VITE_MAPA_KEY;
+const mapaId = import.meta.env.VITE_MAPA_ID;
 
 
 const libraries: ('marker')[] = ['marker'];
@@ -10,7 +10,7 @@ type Props = {
 
 export const MapaGoogle= ({location}:Props) => {
   const center = { lat: location[0], lng: location[1] };
-
+  console.log(mapaKey +' '+ mapaId)
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: mapaKey,
     libraries,
@@ -26,7 +26,9 @@ export const MapaGoogle= ({location}:Props) => {
         mapContainerStyle={{ width: '100%', height: '100%' , borderRadius: '15px'}}
         center={center}
         zoom={18}
-        mapId={mapaId}
+        options={{
+         mapId: mapaId
+  }}
       //   onLoad={(map) => {
       //     new google.maps.marker.AdvancedMarkerElement({
       //       map,

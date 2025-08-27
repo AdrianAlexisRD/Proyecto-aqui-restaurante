@@ -11,7 +11,6 @@ type Comentario = {
   texto: string;
   fecha: string;
 };
-
 interface Restaurante {
   _id: string;
   nombre: string;
@@ -50,7 +49,7 @@ export const Card = () => {
   return (
     <div
       key={datos._id}
-      className="grid grid-cols-2 gap-5 justify-self-center mt-5
+      className="grid md:grid-cols-2 gap-5 justify-self-center mt-5
        bg-[#121212] text-white p-4 rounded-lg xl:w-[90%] w-[90%] shadow-lg"
     >
       <div className="mt-3 flex flex-col gap-3 overflow-hidden ">
@@ -72,21 +71,24 @@ export const Card = () => {
       </div>
       <MapaGoogle location={datos.location} />
 
-      <div className="flex flex-col ">
-        <p className="text-sm xl:text-xl text-gray-300 mb-1">
+      <div className="flex flex-col gap-5 ">
+        <div className="flex gap-4">
+          <p className="text-sm xl:text-xl text-gray-300 mb-1">
           {" "}
           <span className="text-red-400 font-bold">Tipo: </span>{" "}
           {datos.tipoComida}
         </p>
         <p className="text-sm xl:text-xl text-gray-300 mb-1">
-          {" "}
-          <span className="text-red-400 font-bold">Estado: </span>{" "}
+          
+          <span className="text-red-400 font-bold">Estado: </span>
           {datos.status}
         </p>
         <p className="text-sm xl:text-xl text-gray-300 mb-1">
           <span className="text-red-400 font-bold">Horario: </span>{" "}
           {datos.horario.apertura} - {datos.horario.cierre}
         </p>
+        </div>
+
         <div className="flex gap-5">
           <div className="flex gap-2 font-bold items-center">
             <IconStar className=" text-red-400" stroke={3} size={25} />

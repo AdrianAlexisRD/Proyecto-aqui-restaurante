@@ -2,7 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
-const apiUrl = import.meta.env.FIREBASE_KEY;
+const apiUrl = import.meta.env.VITE_FIREBASE_KEY;
 
 const firebaseConfig = {
   apiKey: apiUrl,

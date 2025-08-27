@@ -8,7 +8,7 @@ import {
    BuscarRestaurante
   } from './DataControllers/RestaurantControllers.js'; 
 import { darLike } from './DataControllers/LikesController.js';
-import { procesarEstrellas } from './DataControllers/Estrellas.js';
+import { procesarEstrellas , getEstrellas} from './DataControllers/Estrellas.js';
 
 const router = express.Router();
 dotenv.config();
@@ -22,7 +22,7 @@ app.use(express.json());
 
 
 router.route('/restaurante')
-  .get(obtenerRestaurantes)
+  .get(obtenerRestaurantes) 
   .post(crearRestaurante);
 
 router.route('/buscarRestaurante')
@@ -31,8 +31,9 @@ router.route('/buscarRestaurante')
 router.route('/likes')
   .patch(darLike);
 
-  router.route('/estrellas')
-  .put(procesarEstrellas);
+router.route('/estrellas')
+  .get(getEstrellas)
+  .post(procesarEstrellas);
 
 
 app.use('/', router);
